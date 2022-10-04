@@ -11,11 +11,14 @@ export default function Dictionary() {
 		setResults(response.data[0]);
 	}
 
-	function search(event) {
-		event.preventDefault();
-
+	function search() {
 		let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
 		axios.get(apiUrl).then(handleResponse);
+	}
+
+	function handleSubmit(event) {
+		event.preventDefault();
+		search();
 	}
 
 	function handleKeywordChange(event) {
@@ -24,9 +27,18 @@ export default function Dictionary() {
 
 	return (
 		<div className="Dictionary">
-			<form onSubmit={search}>
-				<input type="search" autoFocus={true} onChange={handleKeywordChange} />
-			</form>
+			<section>
+				<h1>What word do you want to look up?</h1>
+				<form onSubmit={handleSubmit}>
+					<input
+						type="search"
+						autoFocus={true}
+						onChange={handleKeywordChange}
+						placeholder="Search for a word"
+					/>
+				</form>
+				<div className="hint">suggested words: sunset, wine, yoga</div>
+			</section>
 			<Results results={results} />
 		</div>
 	);
