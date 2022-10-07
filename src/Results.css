@@ -5,3 +5,9 @@
 	font-family: "EB Garamond", serif;
 	text-transform: capitalize;
 }
+
+@media (max-width: 575.98px) {
+	.Results h2 {
+		font-size: 35px;
+	}
+}
